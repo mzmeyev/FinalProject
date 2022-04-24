@@ -1,6 +1,5 @@
 package FinalProject.steps;
 
-import com.codeborne.selenide.WebDriverRunner;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import com.codeborne.selenide.Configuration;
