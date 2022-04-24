@@ -1,4 +1,4 @@
-package FinalProject;
+package FinalProject.POMs;
 
 import FinalProject.POMs.BasePagePom;
 import FinalProject.POMs.CartPagePom;
