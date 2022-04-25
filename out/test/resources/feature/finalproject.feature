@@ -11,6 +11,8 @@ Feature: Final Project
     And Scroll down to product
     And Click on the product
     And Scroll down to Add to cart button and Click it
+    And Set Product Price
+    And Set Product Name
     Then Click Browse the Shopping Cart button
     And Click continue in Shopping Cart page
     And Enter email and password

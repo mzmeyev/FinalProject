@@ -1,14 +1,13 @@
-package FinalProject.POMs;
+package FinalProject.pageobjects;
 
+import FinalProject.config.HomePage;
 import FinalProject.models.UserStatic;
 import org.openqa.selenium.By;
 import static com.codeborne.selenide.Selenide.$;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-
-
-public class CartPagePom{
+public class CartPagePom extends HomePage {
     UserStatic userStatic = new UserStatic();
 
     private final By finalProductName = By.className("gtm-shipping");

@@ -1,6 +1,6 @@
 package FinalProject.steps;
 
-import FinalProject.POMs.CartPagePom;
+import FinalProject.pageobjects.CartPagePom;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 
