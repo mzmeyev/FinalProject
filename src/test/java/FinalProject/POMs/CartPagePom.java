@@ -6,9 +6,13 @@ import static com.codeborne.selenide.Selenide.$;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
+
+
 public class CartPagePom{
     UserStatic userStatic = new UserStatic();
 
+    private final By finalProductName = By.className("gtm-shipping");
+    private final By finalProductPrice = By.className("gtm-shipping");
 
     public void setPressContinueButton() {
         $(By.name("commit")).click();
@@ -31,13 +35,15 @@ public class CartPagePom{
     }
 
     public void validateProductName(String productName) {
-        String finalProductName =$(By.xpath("//div[@data-name]")).getAttribute("data-name");
-        assertThat(productName).isEqualTo(finalProductName);
+        String finalNameText = $(finalProductName).getAttribute("data-name");
+        assertThat(finalNameText).isEqualTo(productName);
+
     }
 
     public void validateProductPrice(String productPrice) {
-        String finalProductPrice =$(By.xpath("//div[@data-price]")).getAttribute("data-price");
-        assertThat(productPrice).isEqualTo(finalProductPrice);
+        String finalPriceText = $(finalProductPrice).getAttribute("data-price");
+        assertThat(finalPriceText).isEqualTo(productPrice);
+
     }
 
 }
