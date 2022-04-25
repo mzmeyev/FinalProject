@@ -1,63 +1,61 @@
 package FinalProject.steps;
 
+
+import FinalProject.POMs.HomePagePom;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
-import com.codeborne.selenide.Configuration;
 import io.cucumber.java.en.Then;
-import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static com.codeborne.selenide.WebDriverRunner.url;
-import static org.assertj.core.api.Assertions.assertThat;
 
-public class HomePageSteps {
+
+public class HomePageSteps{
+    HomePagePom homePagePom = new HomePagePom();
+
+
     @Given("Open HomePage")
     public void openHomePage() {
-    open("https://www.1a.lv/");
-    Configuration.holdBrowserOpen = true;
-    getWebDriver().manage().window().maximize();
+        homePagePom.open1alvPage();
     }
 
     @Then("Dismiss Cookie popup")
-    public void dismissCookiePopup() {
-        $(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).click();
+    public void dismissCookie() {
+        homePagePom.pressDismissCookie();
     }
 
-    @And("Validate that Home Page is open")
-    public void validateThatHomePageIsOpen() {
-        String currentUrl = url();
-        assertThat(currentUrl).isEqualTo("https://www.1a.lv/");
+    @And("^Validate that Home Page is open (.*)$")
+    public void validateThatHomePageIsOpen(String url) {
+        homePagePom.validateThatHomePageIsOpen(url);
     }
 
     @Then("^Find the searchbar and enter (.*)$")
     public void findTheSearchbarAndEnter(String productName) {
-        $(By.id("q")).sendKeys(productName);
+        homePagePom.enterProductNameInSearchBar(productName);
     }
 
     @And("Click the search button")
     public void clickTheSearchButton() {
-        $(By.className("main-search-submit")).click();
+        homePagePom.setPressSearchButton();
     }
 
     @And("Scroll down to product")
     public void scrollDownToProduct() {
-        $(By.xpath("//a[@data-gtm-link='448154']")).scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"center\"}");
+        homePagePom.scrollDownToProduct();
     }
 
     @And("Click on the product")
     public void clickOnTheProduct() {
-        $(By.xpath("//a[@data-gtm-link='448154']")).click();
+        homePagePom.setClickOnProduct();
     }
 
 
     @And("Scroll down to Add to cart button and Click it")
     public void scrollDownToAddToCartButtonAndClickIt() {
-        $(By.id("add_to_cart_btn")).scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"center\"}").click();
+        homePagePom.setClickOnAddToCart();
     }
 
     @Then("Click Browse the Shopping Cart button")
     public void clickBrowseTheShoppingCartButton() {
-        $(By.xpath("//a[@class='main-button']")).click();
+        homePagePom.setClickOnViewCart();
     }
+
 }

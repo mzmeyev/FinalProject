@@ -1,44 +1,44 @@
 package FinalProject.steps;
 
+import FinalProject.POMs.CartPagePom;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.*;
 
 
 public class ShoppingCartSteps {
+    CartPagePom cartPagePom = new CartPagePom();
 
-    @And("Validate the product name")
-    public void validateTheProductName() {
-        String productName = "Spēļu konsole Microsoft XBOX Series S, USB 3.1 / HDMI / Wi-Fi";
-        $(By.className("detailed-cart-item__name")).shouldHave(text(productName));
-
-    }
 
     @And("Click continue in Shopping Cart page")
     public void clickContinueInShoppingCartPage() {
-        $(By.name("commit")).click();
+        cartPagePom.setPressContinueButton();
     }
 
 
-    @And("^Enter email (.*) and password (.*)$")
-    public void enterEmailAndPassword(String email, String password) {
-        $(By.name("user[email]")).sendKeys(email);
-        $(By.name("user[password]")).sendKeys(password);
-        $(By.name("commit")).click();
+    @And("Enter email and password")
+    public void enterEmailAndPassword() {
+        cartPagePom.setEnterEmail();
+        cartPagePom.setEnterPassword();
     }
 
-    @And("Select a pick up point")
+    @And("Login as User")
+    public void loginAsUser() {
+        cartPagePom.setClickLogIn();
+    }
+
+    @Then("Select a pick up point")
     public void selectAPickUpPoint() {
-        $(By.xpath("//input[@value='3207']")).click();
+       cartPagePom.setSelectPickUp();
     }
 
-
-    @Then("Validate the final price")
-    public void validateTheFinalPrice() {
-        $(By.className("checkout-order-summary")).shouldHave(text("308,99 €"));
+    @And("^Validate the final price to be (.*)$")
+    public void validateTheFinalPriceToBe(String productPrice) {
+        cartPagePom.validateProductPrice(productPrice);
     }
 
+    @And("^Validate the final name to be (.*)$")
+    public void validateTheFinalNameToBe(String productName) {
+        cartPagePom.validateProductName(productName);
+    }
 }

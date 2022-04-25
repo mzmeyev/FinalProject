@@ -1,39 +1,57 @@
 package FinalProject.POMs;
 
+import FinalProject.models.ShoppingCart;
+import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.By;
 
-public class HomePagePom extends BasePagePom {
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static com.codeborne.selenide.WebDriverRunner.url;
+import static org.assertj.core.api.Assertions.assertThat;
 
-    private final By dismissCookie = By.xpath("//a[@id='CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll']");
-    private final By enterProductName = By.xpath("//input[@placeholder='Ierakstiet, ko vēlaties atrast']");
-    private final By pressSearchButton = By.className("main-search-submit");
-    private final By clickOnProduct = By.xpath("//a[@data-gtm-link='448154']");
-    private final By clickOnAddToCart = By.id("add_to_cart_btn");
-    private final By clickOnViewCart = By.xpath("//a[@class='main-button']");
+public class HomePagePom{
 
+    ShoppingCart shoppingCart = new ShoppingCart();
+
+    public void open1alvPage() {
+        open("https://www.1a.lv/");
+        Configuration.holdBrowserOpen = true;
+        getWebDriver().manage().window().maximize();
+    }
 
     public void pressDismissCookie() {
-        driver.findElement(dismissCookie).click();
+        $(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).click();
+    }
+
+    public void validateThatHomePageIsOpen(String url) {
+        String currentUrl = url();
+        assertThat(currentUrl).isEqualTo(url);
     }
 
     public void enterProductNameInSearchBar(String productName) {
-        driver.findElement(enterProductName).sendKeys(productName);
+        shoppingCart.setProductName(productName);
+        $(By.xpath("//input[@placeholder='Ierakstiet, ko vēlaties atrast']")).sendKeys(shoppingCart.getProductName());
     }
 
     public void setPressSearchButton() {
-        driver.findElement(pressSearchButton).click();
+        $(By.className("main-search-submit")).click();
+    }
+
+    public void scrollDownToProduct() {
+        $(By.xpath("//a[@data-gtm-link='448154']")).scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"center\"}");
     }
 
     public void setClickOnProduct() {
-        driver.findElement(clickOnProduct).click();
+        $(By.xpath("//a[@data-gtm-link='448154']")).click();
     }
 
     public void setClickOnAddToCart() {
-        driver.findElement(clickOnAddToCart).click();
+        $(By.id("add_to_cart_btn")).scrollIntoView("{behavior: \"instant\", block: \"center\", inline: \"center\"}").click();
     }
 
     public void setClickOnViewCart() {
-        driver.findElement(clickOnViewCart).click();
+        $(By.xpath("//a[@class='main-button']")).click();
     }
 
 }
