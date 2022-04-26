@@ -1,4 +1,4 @@
-package FinalProject.config;
+package FinalProject.pageobjects;
 
 import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.By;

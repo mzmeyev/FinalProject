@@ -27,9 +27,9 @@ public class ShoppingCartSteps {
         cartPagePom.setClickLogIn();
     }
 
-    @Then("Select a pick up point")
-    public void selectAPickUpPoint() {
-       cartPagePom.setSelectPickUp();
+    @Then("^Select a pick up point to be (.*)")
+    public void selectAPickUpPointToBe(String pickupPlace) {
+        cartPagePom.setSelectPickUp();
     }
 
     @And("^Validate the final price to be (.*)$")
@@ -41,4 +41,6 @@ public class ShoppingCartSteps {
     public void validateTheFinalNameToBe(String productName) {
         cartPagePom.validateProductName(productName);
     }
+
+
 }

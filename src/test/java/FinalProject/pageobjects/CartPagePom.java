@@ -1,6 +1,5 @@
 package FinalProject.pageobjects;
 
-import FinalProject.config.HomePage;
 import FinalProject.models.UserStatic;
 import org.openqa.selenium.By;
 import static com.codeborne.selenide.Selenide.$;
@@ -12,37 +11,40 @@ public class CartPagePom extends HomePage {
 
     private final By finalProductName = By.className("gtm-shipping");
     private final By finalProductPrice = By.className("gtm-shipping");
+    private final By continueButton = By.name("commit");
+    private final By enterEmail = By.name("user[email]");
+    private final By enterPassword = By.name("user[password]");
+    private final By clickLogIn = By.name("commit");
+    private final By selectPickUp = By.xpath("//input[@value='3207']");
 
     public void setPressContinueButton() {
-        $(By.name("commit")).click();
+        $(continueButton).click();
     }
 
     public void setEnterEmail () {
-        $(By.name("user[email]")).sendKeys(userStatic.getEmail());
+        $(enterEmail).sendKeys(userStatic.getEmail());
     }
 
     public void setEnterPassword () {
-        $(By.name("user[password]")).sendKeys(userStatic.getPassword());
+        $(enterPassword).sendKeys(userStatic.getPassword());
     }
 
     public void setClickLogIn() {
-        $(By.name("commit")).click();
+        $(clickLogIn).click();
     }
 
     public void setSelectPickUp() {
-        $(By.xpath("//input[@value='3207']")).click();
+        $(selectPickUp).click();
     }
 
     public void validateProductName(String productName) {
         String finalNameText = $(finalProductName).getAttribute("data-name");
         assertThat(finalNameText).isEqualTo(productName);
-
     }
 
     public void validateProductPrice(String productPrice) {
         String finalPriceText = $(finalProductPrice).getAttribute("data-price");
         assertThat(finalPriceText).isEqualTo(productPrice);
-
     }
 
 }

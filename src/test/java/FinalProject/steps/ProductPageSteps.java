@@ -19,35 +19,28 @@ public class ProductPageSteps {
         productPagePom.setPressSearchButton();
     }
 
-    @And("Scroll down to product")
-    public void scrollDownToProduct() {
-        productPagePom.scrollDownToProduct();
-    }
-
     @And("Click on the product")
     public void clickOnTheProduct() {
         productPagePom.setClickOnProduct();
     }
 
+    @And("Set Product Price and Name")
+    public void setProductPriceAndName() {
+        shoppingCart.setProductPrice(shoppingCart.getProductPrice());
+        shoppingCart.setProductName(shoppingCart.getProductName());
+    }
 
     @And("Scroll down to Add to cart button and Click it")
     public void scrollDownToAddToCartButtonAndClickIt() {
         productPagePom.setClickOnAddToCart();
     }
 
-    @And("Set Product Price")
-    public void setProductPrice() {
-        shoppingCart.setProductPrice(shoppingCart.getProductPrice());
-    }
 
-    @And("Set Product Name")
-    public void setProductName() {
-        shoppingCart.setProductName(shoppingCart.getProductName());
-    }
 
     @Then("Click Browse the Shopping Cart button")
     public void clickBrowseTheShoppingCartButton() {
         productPagePom.setClickOnViewCart();
     }
+
 
 }

@@ -1,7 +1,7 @@
 package FinalProject.steps;
 
 
-import FinalProject.config.HomePage;
+import FinalProject.pageobjects.HomePage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
